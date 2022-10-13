@@ -6,20 +6,24 @@
 
 {% set assetPath = url_for('static', filename='').rstrip('/') %}
 
-{% block pageTitle %}GOV.UK Frontend WTForms Demo – GOV.UK{% endblock %}
+{% block pageTitle %}GDS Circuits{% endblock %}
 
 {% block head %}
   <meta name="description" content="GOV.UK Frontend WTForms Demo">
   <meta name="keywords" content="GOV.UK, govuk, gov, government, uk, frontend, ui, user interface, jinja, python, flask, port, template, templating, macro, component, design system, html, forms, wtf, wtforms, widget, widgets, demo, example">
   <meta name="author" content="HM Land Registry">
+
   <!--[if gt IE 8]><!--><link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='govuk-frontend-4.2.0.min.css') }}" /><!--<![endif]-->
   <!--[if IE 8]><link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='govuk-frontend-ie8-4.2.0.min.css') }}" /><![endif]-->
+  <meta http-equiv="Content-Security-Policy" content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; base-uri * self 'unsafe-inline' blob: data: gap:;">
+<script type="text/javascript" src="{{ url_for('static', filename='bokeh-2.4.3.min.js') }}"</script>
+
+
 {% endblock %}
 
 {% block bodyStart %}
   {% if "cookies_policy" not in request.cookies %}
     {% set html %}
-      <p>We use some essential cookies to make this service work.</p>
       <p>We’d like to set additional cookies so we can remember your settings, understand how people use the service and make improvements.</p>
     {% endset %}
 
@@ -108,9 +112,10 @@
 {% block header %}
   {{ govukHeader({
     'homepageUrl': url_for('main.index'),
-    'serviceName': "GOV.UK Frontend WTForms Demo",
+    'serviceName': "GOV.UK circuits session planner",
     'serviceUrl': url_for('main.index')
   }) }}
+{{ script|safe }}
 {% endblock %}
 
 {% block content %}
@@ -131,7 +136,7 @@
   {{ govukFooter({
     'navigation': [
       {
-        'title': 'This demo uses',
+        'title': 'This service uses',
         'columns': 1,
         'items': [
             {
@@ -185,8 +190,7 @@
           'href': url_for('main.privacy'),
           'text': "Privacy"
         }
-      ],
-      'html': 'Built by <a href="https://www.gov.uk/government/organisations/land-registry" class="govuk-footer__link">HM Land Registry</a> and <a href="https://github.com/LandRegistry/govuk-frontend-wtf/graphs/contributors" class="govuk-footer__link">Contributors</a>'
+      ]
     }
   }) }}
 {% endblock %}

@@ -289,7 +289,7 @@ class KitchenSinkForm(FlaskForm):
         description="Hint text: WTForm DateTimeField rendered using a GovDateInput widget.",
     )
 
-    submit_button = SubmitField("SubmitField", widget=GovSubmitInput())
+    submit_button = SubmitField("Continue", widget=GovSubmitInput())
 
 
 class ConditionalRevealForm(FlaskForm):
